@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-public class Flyer {
+public class Flyer extends Produit {
 
      @Id
      @GeneratedValue(strategy = GenerationType.AUTO)

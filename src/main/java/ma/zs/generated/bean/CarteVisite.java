@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-public class CarteVisite {
+public class CarteVisite extends Produit {
 
      @Id
      @GeneratedValue(strategy = GenerationType.AUTO)

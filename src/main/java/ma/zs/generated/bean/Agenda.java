@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-public class Agenda {
+public class Agenda extends Produit {
 
      @Id
      @GeneratedValue(strategy = GenerationType.AUTO)
