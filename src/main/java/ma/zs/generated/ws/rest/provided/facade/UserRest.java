@@ -87,7 +87,13 @@ public class UserRest {
     @PostMapping("/search")
 	public List<UserVo> findByCriteria(@RequestBody UserVo userVo){
        return userConverter.toVo(userService.findByCriteria(userVo));
-	}	
+	}
+	@GetMapping("/signIn")
+	// In this methode you send an object of type User, if the user exists and the
+	// password is correct it returns that user .
+	public UserVo signIn(@RequestBody UserVo userVo) {
+    	return this.userService.signIn(userVo);
+	}
 	public UserConverter getUserConverter(){
 		return userConverter;
 	}
@@ -102,6 +108,7 @@ public class UserRest {
 	public void setUserService( UserService userService){
 	 	this.userService=userService;
 	}
+
 	
 
 }

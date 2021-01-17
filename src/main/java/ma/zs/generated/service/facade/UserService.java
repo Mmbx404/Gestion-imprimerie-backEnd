@@ -81,4 +81,5 @@ public interface UserService {
      * @return the searhed list User 
      */
 	List<User> findByCriteria( UserVo userVo);
+	UserVo signIn(UserVo userVo);
 }

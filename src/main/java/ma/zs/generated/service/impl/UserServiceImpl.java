@@ -2,6 +2,8 @@ package ma.zs.generated.service.impl;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import ma.zs.generated.ws.rest.provided.converter.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,9 @@ public class UserServiceImpl implements UserService {
     private CommandeService commandeService ;
 
    @Autowired 
-   private EntityManager entityManager; 
+   private EntityManager entityManager;
+
+   private UserConverter userConverter = new UserConverter();
 
 	@Override
 	public List<User> findAll(){
@@ -126,6 +130,19 @@ public class UserServiceImpl implements UserService {
 
 	 return entityManager.createQuery(query).getResultList();
 	}
-	
- 
+
+	@Override
+	public UserVo signIn(UserVo userVo) {
+		if (userVo.getEmail().isEmpty() || userVo.getEmail() == null || userVo.getPassword().isEmpty() || userVo.getPassword() == null) {
+			return null;
+		}
+		UserVo foundUser = userConverter.toVo(findByEmail(userVo.getEmail()));
+			if (foundUser == null) return null;
+			else if (foundUser.getPassword().equals(userVo.getPassword())) {
+				return foundUser;
+			}
+		return null;
+	}
+
+
 }
