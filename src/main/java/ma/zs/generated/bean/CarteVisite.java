@@ -1,11 +1,7 @@
 package ma.zs.generated.bean;
 
-import javax.persistence.ManyToOne;
-import java.math.BigDecimal;   
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class CarteVisite extends Produit {

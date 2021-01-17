@@ -19,12 +19,22 @@ public class Produit {
      private Long quantiteStock ;
      private Long hauteur ;
      private String reference ;
+     private byte[] content;
 
      @ManyToOne
 	private Commande commande ;
 
      public Produit(){
        super();
+     }
+
+
+     public byte[] getContent() {
+          return content;
+     }
+
+     public void setContent(byte[] content) {
+          this.content = content;
      }
 
      public Long getId(){

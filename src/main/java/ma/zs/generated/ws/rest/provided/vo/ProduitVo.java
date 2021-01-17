@@ -30,13 +30,20 @@ public class ProduitVo {
      private String quantiteStockMin ;
      private String hauteurMax ;
      private String hauteurMin ;
-
+    private byte[] content;
  public ProduitVo(){
        super();
      }
 
+    public byte[] getContent() {
+        return content;
+    }
 
-     public String getPrixUnitaire(){
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public String getPrixUnitaire(){
           return this.prixUnitaire;
      }
       public void setPrixUnitaire(String prixUnitaire){

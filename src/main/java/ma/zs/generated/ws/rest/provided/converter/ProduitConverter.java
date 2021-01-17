@@ -41,7 +41,7 @@ public class ProduitConverter extends AbstractConverter<Produit,ProduitVo>{
                   item.setId(NumberUtil.toLong(vo.getId()));
              if(vo.getCommandeVo()!=null && this.commande)
 			     item.setCommande(commandeConverter.toItem(vo.getCommandeVo())) ;
-
+             item.setContent(vo.getContent());
 
 		return item;
  		}
@@ -72,8 +72,8 @@ public class ProduitConverter extends AbstractConverter<Produit,ProduitVo>{
 				vo.setId(NumberUtil.toString(item.getId()));
             if(item.getCommande()!=null && this.commande) {
 				   vo.setCommandeVo(commandeConverter.toVo(item.getCommande())) ;
-			   } 
-
+			   }
+            vo.setContent(item.getContent());
  			return vo;
  
  		}
