@@ -1,5 +1,6 @@
 package  ma.zs.generated.ws.rest.provided.facade;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import ma.zs.generated.bean.Agenda;
 import ma.zs.generated.service.facade.AgendaService;
 import ma.zs.generated.ws.rest.provided.converter.AgendaConverter;
 import ma.zs.generated.ws.rest.provided.vo.AgendaVo;
+import org.springframework.web.multipart.MultipartFile;
 
 @Api("Manages agenda services")
 @RestController
@@ -45,7 +47,7 @@ public class AgendaRest {
 	}
 
 	@ApiOperation("Updates the specified agenda")
-	@PutMapping("/")
+	@PutMapping("/update/")
 	public AgendaVo update(@RequestBody AgendaVo agendaVo){
 		Agenda agenda= agendaConverter.toItem(agendaVo);
 	  agenda=	agendaService.update(agenda);
@@ -87,7 +89,12 @@ public class AgendaRest {
     @PostMapping("/search")
 	public List<AgendaVo> findByCriteria(@RequestBody AgendaVo agendaVo){
        return agendaConverter.toVo(agendaService.findByCriteria(agendaVo));
-	}	
+	}
+
+	@PostMapping("/upload/{reference}")
+	public int uploadContent(@RequestBody MultipartFile file, @PathVariable String reference) throws IOException {
+		return this.agendaService.uploadContent(file,reference);
+	}
 	public AgendaConverter getAgendaConverter(){
 		return agendaConverter;
 	}

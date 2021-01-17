@@ -1,5 +1,6 @@
 package ma.zs.generated.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import ma.zs.generated.service.facade.AgendaService;
 
 import ma.zs.generated.ws.rest.provided.vo.AgendaVo;
 import ma.zs.generated.service.util.*;
+import org.springframework.web.multipart.MultipartFile;
+
 @Service
 public class AgendaServiceImpl implements AgendaService {
 
@@ -118,6 +121,17 @@ public class AgendaServiceImpl implements AgendaService {
 	  query += SearchUtil.addConstraintMinMax("o","largeur",agendaVo.getLargeurMin(),agendaVo.getLargeurMax());
 	 return entityManager.createQuery(query).getResultList();
 	}
-	
- 
+
+	@Override
+	public int uploadContent(MultipartFile file, String reference) throws IOException {
+		Agenda agenda = agendaDao.findByReference(reference);
+		if (agenda != null) {
+			agenda.setContent(file.getBytes());
+			agendaDao.save(agenda);
+			return 1;
+		}
+		return -1;
+	}
+
+
 }

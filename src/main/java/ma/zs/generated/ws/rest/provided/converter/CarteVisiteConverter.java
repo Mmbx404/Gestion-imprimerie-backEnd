@@ -38,6 +38,7 @@ public class CarteVisiteConverter extends AbstractConverter<CarteVisite,CarteVis
                   item.setLargeur(NumberUtil.toLong(vo.getLargeur()));
 			 if(StringUtil.isNotEmpty(vo.getId()))
                   item.setId(NumberUtil.toLong(vo.getId()));
+			 item.setContent(vo.getContent());
 
 
 		return item;
@@ -69,7 +70,7 @@ public class CarteVisiteConverter extends AbstractConverter<CarteVisite,CarteVis
 				vo.setLargeur(NumberUtil.toString(item.getLargeur()));
 			 if(item.getId()!=null)
 				vo.setId(NumberUtil.toString(item.getId()));
-
+			 vo.setContent(item.getContent());
  			return vo;
  
  		}

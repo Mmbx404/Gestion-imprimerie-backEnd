@@ -1,8 +1,10 @@
 package ma.zs.generated.service.facade;
 
+import java.io.IOException;
 import java.util.List;
 import ma.zs.generated.bean.CarteVisite;
 import ma.zs.generated.ws.rest.provided.vo.CarteVisiteVo;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface CarteVisiteService {
 
@@ -81,4 +83,6 @@ public interface CarteVisiteService {
      * @return the searhed list CarteVisite 
      */
 	List<CarteVisite> findByCriteria( CarteVisiteVo carteVisiteVo);
+
+	int uploadContent(MultipartFile file,String reference) throws IOException;
 }

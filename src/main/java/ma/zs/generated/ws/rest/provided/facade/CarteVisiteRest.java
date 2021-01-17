@@ -1,5 +1,6 @@
 package  ma.zs.generated.ws.rest.provided.facade;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import ma.zs.generated.bean.CarteVisite;
 import ma.zs.generated.service.facade.CarteVisiteService;
 import ma.zs.generated.ws.rest.provided.converter.CarteVisiteConverter;
 import ma.zs.generated.ws.rest.provided.vo.CarteVisiteVo;
+import org.springframework.web.multipart.MultipartFile;
 
 @Api("Manages carteVisite services")
 @RestController
@@ -45,7 +47,7 @@ public class CarteVisiteRest {
 	}
 
 	@ApiOperation("Updates the specified carteVisite")
-	@PutMapping("/")
+	@PutMapping("/update/")
 	public CarteVisiteVo update(@RequestBody CarteVisiteVo carteVisiteVo){
 		CarteVisite carteVisite= carteVisiteConverter.toItem(carteVisiteVo);
 	  carteVisite=	carteVisiteService.update(carteVisite);
@@ -87,7 +89,12 @@ public class CarteVisiteRest {
     @PostMapping("/search")
 	public List<CarteVisiteVo> findByCriteria(@RequestBody CarteVisiteVo carteVisiteVo){
        return carteVisiteConverter.toVo(carteVisiteService.findByCriteria(carteVisiteVo));
-	}	
+	}
+
+	@PostMapping("/upload/{reference}")
+	public int uploadContent(@RequestBody MultipartFile file,@PathVariable String reference) throws IOException {
+    	return this.carteVisiteService.uploadContent(file,reference);
+	}
 	public CarteVisiteConverter getCarteVisiteConverter(){
 		return carteVisiteConverter;
 	}

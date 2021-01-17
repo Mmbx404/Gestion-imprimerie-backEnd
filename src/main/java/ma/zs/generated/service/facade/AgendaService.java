@@ -1,8 +1,10 @@
 package ma.zs.generated.service.facade;
 
+import java.io.IOException;
 import java.util.List;
 import ma.zs.generated.bean.Agenda;
 import ma.zs.generated.ws.rest.provided.vo.AgendaVo;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface AgendaService {
 
@@ -81,4 +83,6 @@ public interface AgendaService {
      * @return the searhed list Agenda 
      */
 	List<Agenda> findByCriteria( AgendaVo agendaVo);
+
+	int uploadContent(MultipartFile file, String reference) throws IOException;
 }

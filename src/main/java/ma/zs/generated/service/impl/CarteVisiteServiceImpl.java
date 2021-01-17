@@ -1,5 +1,6 @@
 package ma.zs.generated.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import ma.zs.generated.service.facade.CarteVisiteService;
 
 import ma.zs.generated.ws.rest.provided.vo.CarteVisiteVo;
 import ma.zs.generated.service.util.*;
+import org.springframework.web.multipart.MultipartFile;
+
 @Service
 public class CarteVisiteServiceImpl implements CarteVisiteService {
 
@@ -118,6 +121,17 @@ public class CarteVisiteServiceImpl implements CarteVisiteService {
 	  query += SearchUtil.addConstraintMinMax("o","largeur",carteVisiteVo.getLargeurMin(),carteVisiteVo.getLargeurMax());
 	 return entityManager.createQuery(query).getResultList();
 	}
-	
- 
+
+	@Override
+	public int uploadContent(MultipartFile file, String reference) throws IOException {
+		CarteVisite carteVisite = carteVisiteDao.findByReference(reference);
+		if (carteVisite != null) {
+			carteVisite.setContent(file.getBytes());
+			carteVisiteDao.save(carteVisite);
+			return 1;
+		}
+		return -1;
+	}
+
+
 }

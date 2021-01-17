@@ -38,8 +38,7 @@ public class AgendaConverter extends AbstractConverter<Agenda,AgendaVo>{
                   item.setId(NumberUtil.toLong(vo.getId()));
 			 if(StringUtil.isNotEmpty(vo.getLargeur()))
                   item.setLargeur(NumberUtil.toLong(vo.getLargeur()));
-
-
+			 item.setContent(vo.getContent());
 		return item;
  		}
  	}
@@ -69,7 +68,7 @@ public class AgendaConverter extends AbstractConverter<Agenda,AgendaVo>{
 				vo.setId(NumberUtil.toString(item.getId()));
 			 if(item.getLargeur()!=null)
 				vo.setLargeur(NumberUtil.toString(item.getLargeur()));
-
+			 vo.setContent(item.getContent());
  			return vo;
  
  		}

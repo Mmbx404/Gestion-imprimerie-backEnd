@@ -13,7 +13,7 @@ public class Agenda extends Produit {
      @Id
      @GeneratedValue(strategy = GenerationType.AUTO)
      private Long id;
-
+     private byte[] content;
      private String typePapier ;
      private BigDecimal prixUnitaire ;
      private Boolean fileOuNon ;
@@ -76,7 +76,12 @@ public class Agenda extends Produit {
           this.fileOuNon = fileOuNon;
      }
 
+     public byte[] getContent() {
+          return content;
+     }
 
-
+     public void setContent(byte[] content) {
+          this.content = content;
+     }
 }
 

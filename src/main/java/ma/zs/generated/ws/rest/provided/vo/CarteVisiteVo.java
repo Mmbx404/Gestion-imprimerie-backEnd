@@ -19,6 +19,8 @@ public class CarteVisiteVo {
      private String largeur ;
    
      private String id ;
+
+     private byte[] content;
    
 
 
@@ -171,12 +173,12 @@ public class CarteVisiteVo {
      public void setLargeurMin(String largeurMin){
           this.largeurMin = largeurMin;
      }
-     
-     
-     
 
+    public byte[] getContent() {
+        return content;
+    }
 
-
-
-
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
 }

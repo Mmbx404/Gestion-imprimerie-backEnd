@@ -15,6 +15,7 @@ public class CarteVisite extends Produit {
      private Long id;
 
      private BigDecimal prixUnitaire ;
+     private byte[] content;
      private String typePapier ;
      private Boolean plastifier ;
      private Long quantiteStock ;
@@ -76,7 +77,12 @@ public class CarteVisite extends Produit {
           this.plastifier = plastifier;
      }
 
+     public byte[] getContent() {
+          return content;
+     }
 
-
+     public void setContent(byte[] content) {
+          this.content = content;
+     }
 }
 
