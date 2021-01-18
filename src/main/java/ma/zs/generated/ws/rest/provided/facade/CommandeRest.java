@@ -32,6 +32,7 @@ public class CommandeRest {
     @ApiOperation("Saves the specified commande")
 	@PostMapping("/")
 	public CommandeVo save(@RequestBody CommandeVo commandeVo){
+    	commandeConverter.setProduits(true);
 		Commande commande= commandeConverter.toItem(commandeVo);
 	  commande=	commandeService.save(commande);
 		return commandeConverter.toVo(commande);
@@ -55,7 +56,8 @@ public class CommandeRest {
 	@ApiOperation("Finds a list of all commandes")
 	@GetMapping("/")
 	public List<CommandeVo> findAll(){
-		return commandeConverter.toVo(commandeService.findAll());
+		commandeConverter.setProduits(true);
+    	return commandeConverter.toVo(commandeService.findAll());
 	}
     
 	@ApiOperation("Finds a commande by id")

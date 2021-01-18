@@ -99,7 +99,8 @@ public class CommandeServiceImpl implements CommandeService {
 
 	    Commande savedCommande = commandeDao.save(commande);
                if(ListUtil.isNotEmpty(commande.getProduits())){
-		  savedCommande.setProduits(produitService.save(prepareProduits(savedCommande,commande.getProduits())));
+				   System.out.println("List is not Empty");
+		  savedCommande.setProduits(commande.getProduits());
 		 }
 	   return savedCommande;
 	}
